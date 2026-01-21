@@ -35,9 +35,9 @@
           class="mb-1.5 -mx-[14px] px-[14px] pt-1 pb-1.5 border-l-4 text-[13px] leading-tight" :class="[
             isSent
               ? 'border-l-blue-300/80 bg-white/10'
-              : 'border-l-blue-600/50 bg-black/5'
+              : 'border-primary/80 bg-background-primary/20'
           ]">
-          <div class="font-semibold truncate opacity-95">
+          <div class="font-semibold mb-1 truncate opacity-95">
             {{ replySenderName }}
           </div>
           <div class="opacity-80 line-clamp-2">

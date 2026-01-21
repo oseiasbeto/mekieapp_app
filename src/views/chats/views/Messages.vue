@@ -6,7 +6,7 @@
             <NetworkStatusBar :status="networkStatus" />
         </div>
 
-        <div ref="messagesContainer" :style="{ paddingBottom: inputHeight + 'px' }"
+        <div ref="messagesContainer" @scroll="handleScroll" :style="{ paddingBottom: inputHeight + 'px' }"
             class="flex-1 pt-4 !overflow-y-scroll bg-chat-bg bg-cover">
 
             <div v-if="!loadingMessages">
@@ -26,6 +26,16 @@
             <div class="h-full flex justify-center items-center w-full" v-else>
                 <SpinnerSmall />
             </div>
+
+            <!-- Botão flutuante "scroll to bottom" – estilo Messenger -->
+            <button v-if="showScrollToBottom" @click="scrollToBottom(true)"
+                class="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 w-10 h-10 rounded-full bg-white dark:bg-background-secondary text-primary shadow-lg flex items-center justify-center transition-opacity duration-200"
+                aria-label="Voltar para o final da conversa">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
         </div>
 
 
@@ -40,46 +50,40 @@
             <div v-if="drawer.name === 'MESSAGE_MORE_OPTIONS'">
                 <div
                     class="flex border-b border-border-primary mb-1 overflow-x-auto gap-1 justify-center pt-3 px-1.5 py-2 items-center">
-                    <button 
-                        @click="handleReactMessage(messageSelected._id, '❤️')"
+                    <button @click="handleReactMessage(messageSelected._id, '❤️')"
                         class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
                         :class="{ 'bg-background-tertiary': isReacted('❤️', messageSelected) }">
-                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/heart.png"/>
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/heart.png" />
                     </button>
-                     <button 
-                        @click="handleReactMessage(messageSelected._id, '😆')"
+                    <button @click="handleReactMessage(messageSelected._id, '😆')"
                         class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
                         :class="{ 'bg-background-tertiary': isReacted('😆', messageSelected) }">
-                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/haha.png"/>
-                    </button>
-                    
-                    <button 
-                        @click="handleReactMessage(messageSelected._id, '😡')"
-                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
-                        :class="{ 'bg-background-tertiary': isReacted('😡', messageSelected) }">
-                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/angry.png"/>
-                    </button>
-                    <button 
-                        @click="handleReactMessage(messageSelected._id, '😢')"
-                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
-                        :class="{ 'bg-background-tertiary': isReacted('😢', messageSelected) }">
-                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/sad.png"/>
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/haha.png" />
                     </button>
 
-                     <button 
-                        @click="handleReactMessage(messageSelected._id, '😮')"
+                    <button @click="handleReactMessage(messageSelected._id, '😡')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('😡', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/angry.png" />
+                    </button>
+                    <button @click="handleReactMessage(messageSelected._id, '😢')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('😢', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/sad.png" />
+                    </button>
+
+                    <button @click="handleReactMessage(messageSelected._id, '😮')"
                         class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
                         :class="{ 'bg-background-tertiary': isReacted('😮', messageSelected) }">
-                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/wow.png"/>
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/wow.png" />
                     </button>
-                    
-                    <button 
-                        @click="handleReactMessage(messageSelected._id, '👍')"
+
+                    <button @click="handleReactMessage(messageSelected._id, '👍')"
                         class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
                         :class="{ 'bg-background-tertiary': isReacted('👍', messageSelected) }">
-                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/like.png"/>
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/like.png" />
                     </button>
-                   
+
 
                 </div>
                 <DrawerItem @on-press="onCloseDrawer" title="Copiar" />
@@ -165,6 +169,7 @@ const loadTrigger = ref(null)
 const messageFormRef = ref(false)
 const previousScrollHeight = ref(0)
 const previousScrollTop = ref(0)
+const showScrollToBottom = ref(false)
 
 const convId = route.params.convId;
 
@@ -309,6 +314,23 @@ const handleTypingStart = () => {
         reciverId,
         source: conversation?.value?.source
     })
+}
+
+const handleScroll = () => {
+    checkScrollPosition()
+}
+
+const checkScrollPosition = () => {
+  const container = messagesContainer.value
+  if (!container) return
+
+  const scrollTop = container.scrollTop
+  const scrollHeight = container.scrollHeight
+  const clientHeight = container.clientHeight
+
+  // Mostra botão se estiver pelo menos 200px acima do bottom
+  const nearBottom = scrollHeight - scrollTop - clientHeight < 200
+  showScrollToBottom.value = !nearBottom
 }
 
 const handleTypingStop = () => {
