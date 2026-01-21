@@ -37,7 +37,7 @@ module.exports = {
         info: 'rgb(var(--color-info) / <alpha-value>)',
       },
       fontFamily: {
-        primary: ['Inter', 'sans-serif'],
+        primary: ['Roboto', 'sans-serif'],
         secondary: ['InterVariable, "Segoe UI Emoji"', 'sans-serif']
       },
       animation: {

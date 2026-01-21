@@ -40,12 +40,47 @@
             <div v-if="drawer.name === 'MESSAGE_MORE_OPTIONS'">
                 <div
                     class="flex border-b border-border-primary mb-1 overflow-x-auto gap-1 justify-center pt-3 px-1.5 py-2 items-center">
-                    <button v-for="reaction in visibleReactions" :key="reaction.emoji"
-                        @click="handleReactMessage(messageSelected._id, reaction.emoji)"
-                        class="px-1 py-1 rounded-2xl text-3xl bg-background-secondary hover:bg-background-tertiary"
-                        :class="{ 'bg-background-tertiary': isReacted(reaction.emoji, messageSelected) }">
-                        {{ reaction.emoji }}
+                    <button 
+                        @click="handleReactMessage(messageSelected._id, '❤️')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('❤️', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/heart.png"/>
                     </button>
+                     <button 
+                        @click="handleReactMessage(messageSelected._id, '😆')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('😆', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/haha.png"/>
+                    </button>
+                    
+                    <button 
+                        @click="handleReactMessage(messageSelected._id, '😡')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('😡', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/angry.png"/>
+                    </button>
+                    <button 
+                        @click="handleReactMessage(messageSelected._id, '😢')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('😢', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/sad.png"/>
+                    </button>
+
+                     <button 
+                        @click="handleReactMessage(messageSelected._id, '😮')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('😮', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/wow.png"/>
+                    </button>
+                    
+                    <button 
+                        @click="handleReactMessage(messageSelected._id, '👍')"
+                        class="px-1 py-1 rounded-full text-3xl bg-background-secondary hover:bg-background-tertiary"
+                        :class="{ 'bg-background-tertiary': isReacted('👍', messageSelected) }">
+                        <img class="w-8 h-u" src="../../../assets/imgs/emojis/like.png"/>
+                    </button>
+                   
+
                 </div>
                 <DrawerItem @on-press="onCloseDrawer" title="Copiar" />
                 <DrawerItem @on-press="handleReplyTo(messageSelected)" title="Responder" />
@@ -144,25 +179,6 @@ const readBy = computed(() => {
     if (!conversation.value?._id) return []
     else return conversation.value?.read_by?.filter(i => i.user?._id !== user.value._id) || []
 })
-
-const allReactions = ref([
-    { emoji: '❤️' },
-    { emoji: '😂' },
-    { emoji: '😢' },
-    { emoji: '😠' },
-    { emoji: '👍' },
-    { emoji: '😍' },
-    { emoji: '😮' },
-    { emoji: '😊' },
-    { emoji: '😎' },
-    { emoji: '🤔' },
-    { emoji: '👏' },
-    { emoji: '🙏' }
-]);
-
-const visibleReactions = computed(() => {
-    return allReactions.value.slice(0, 7);
-});
 
 // Estado da rede
 const networkStatus = computed(() => {

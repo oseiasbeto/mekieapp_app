@@ -1,12 +1,12 @@
 import { logger } from '@/utils/logger';
 import { io } from 'socket.io-client';
 
-const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev'
+const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'lan';
 
-const SOCKET_URL = node_env == 'lan' ?
+const SOCKET_URL = node_env === 'dev' ?
     'http://localhost:5050' : node_env == 'prod' ?
     'https://api.1kole.com' :
-    'http://192.168.1.129:5050'
+    'http://192.168.0.227:5050'
 
 let socket;
 let reconnectAttempts = 0;
