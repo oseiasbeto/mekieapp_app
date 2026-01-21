@@ -1,0 +1,68 @@
+html,
+body {
+  touch-action: pan-x pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  overflow-y: hidden;
+  background-color: rgb(var(--color-bg-primary)) !important;
+}
+
+
+@font-face {
+    font-family: 'Segoe UI Emoji';
+    src: url('../assets/fonts/Segoe\ UI\ Gras.ttf') format('truetype');
+    font-weight: 600;
+    font-style: 700;
+    font-display: swap; /* Melhora performance de carregamento */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+.vue-recycle-scroller {
+  width: 100% !important;
+}
+
+.vue-recycle-scroller__item-view {
+  width: 100% !important;
+  transform: none !important;
+  /* ← ESSA LINHA MATA O translateY BUG */
+  position: static !important;
+}
+
+.scroller {
+  contain: layout style;
+  /* melhora performance */
+}
+
+.scroller {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE e Edge */
+}
+
+.scroller-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}

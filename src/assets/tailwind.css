@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode */
+    --color-primary: 93 100 243; 
+    --color-secondary: 2 132 199;   
+    --color-tertiary: 3 105 161;
+    
+    --color-bg-primary: 255 255 255;   
+    --color-bg-secondary: 255 255 255; 
+    --color-bg-tertiary: 244 244 245;   
+    
+    --color-text-primary: 24 24 27;    
+    --color-text-secondary: 82 82 91;  
+    --color-text-tertiary: 161 161 170; 
+    
+    --color-border-primary: 228 228 231; 
+
+      /* Cores de estado - Light */
+    --color-success: 16 185 129;    
+    --color-warning: 245 158 11; 
+    --color-danger: 239 68 68;    
+    --color-info: 6 182 212; 
+  }
+
+  .dark {
+    /* Dark Mode */
+    --color-secondary: 186 230 253; 
+    --color-tertiary: 224 242 254; 
+    --color-link: 82 149 224; 
+    
+    --color-bg-primary: 0 0 0;     
+    --color-bg-secondary: 51 51 51;     
+    --color-bg-tertiary: 87 87 87; 
+    
+    --color-text-primary: 255 255 255;  
+    --color-text-secondary: 178 179 184;
+    --color-text-tertiary: 119 119 119;
+    
+    --color-border-primary: 119 119 119;   
+    
+    /* Cores de estado - Dark */
+    --color-success: 52 211 153;    /* #34d399 */
+    --color-warning: 251 191 36;    /* #fbbf24 */
+    --color-danger: 248 113 113;    /* #f87171 */
+    --color-info: 34 211 238;       /* #22d3ee */
+  }
+}
