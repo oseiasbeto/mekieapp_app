@@ -16,7 +16,7 @@
 
     <!-- Título -->
     <h1 class="text-4xl font-extrabold text-white mb-3 tracking-tight">
-      Unkule
+      MekieApp
     </h1>
 
     <!-- Subtítulo -->
