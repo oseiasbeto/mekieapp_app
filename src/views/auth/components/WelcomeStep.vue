@@ -21,7 +21,7 @@
 
     <!-- Subtítulo -->
     <p class="text-lg text-gray-300 mb-12 leading-relaxed max-w-xs">
-      O mensageiro mais rápido, seguro e angolano que existe
+      O mensageiro mais rápido, seguro e angolano que existe MekieApp
     </p>
 
     <!-- Botão principal (exatamente como Telegram) -->
