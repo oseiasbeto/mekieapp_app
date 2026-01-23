@@ -1,9 +1,8 @@
 <template>
-  <div class="flex w-full items-center px-4 py-2 gap-3 animate-pulse">
+  <div class="flex w-full items-center px-4 py-2 gap-3.5">
     <!-- Avatar skeleton -->
     <div class="relative flex-shrink-0">
       <div class="w-[52px] h-[52px] bg-background-secondary rounded-full"></div>
-      
     </div>
 
     <!-- Conteúdo -->

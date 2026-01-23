@@ -1,6 +1,6 @@
 <template>
   <div @contextmenu.prevent="$emit('more-options', conversation)" @click="$emit('click')" class="
-      flex items-center px-4 py-3 gap-3 cursor-pointer transition-all duration-200 relative
+      flex items-center px-4 py-3 gap-3.5 cursor-pointer transition-all duration-200 relative
       hover:bg-background-secondary
     ">
     <!-- Avatar com status online -->
@@ -9,7 +9,7 @@
 
       <!-- Bolinha verde de online (só em conversas diretas) -->
       <div v-if="props?.conversation.type === 'direct' && props?.conversation.is_online"
-        class="absolute bottom-0 right-0 w-4 h-4 bg-green-400 rounded-full border-2 border-background-primary">
+        class="absolute bottom-0 right-0 w-4 h-4 bg-[#31a24c] rounded-full border-2 border-background-primary">
       </div>
     </div>
 
@@ -17,7 +17,7 @@
     <div class="flex-1 min-w-0">
       <div class="flex items-center justify-between gap-2">
         <!-- Nome do contato -->
-        <h3 class="text-[15px] font-medium text-text-primary truncate max-w-[180px]">
+        <h3 class="text-base font-medium text-text-primary truncate max-w-[180px]">
           {{ props?.conversation.name }}
         </h3>
 
@@ -33,19 +33,19 @@
 
 
         <!-- Horário da última mensagem -->
-        <span v-show="!conversation?.is_typing" :class="['text-[13px] flex-shrink-0',
+        <span v-show="!conversation?.is_typing" :class="['text-xs flex-shrink-0',
           props?.conversation.unread_count ? 'text-text-primary' : 'text-text-secondary']">
           {{ formatMessageTime(props?.conversation?.last_message?.created_at, new Date(currentTime)) }}
         </span>
       </div>
 
-      <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center text-sm justify-between gap-3">
         <!-- Última mensagem + ícone de check se for enviada por você -->
-        <p v-if="conversation?.is_typing" class="text-[13.5px] mt-[2.5px] text-green-400 truncate max-w-[220px]">
+        <p v-if="conversation?.is_typing" class="mt-[2.5px] text-green-400 truncate max-w-[220px]">
           Escrevendo...
         </p>
         <!-- Última mensagem + ícone de check se for enviada por você -->
-        <p v-else-if="props.conversation?.last_message?.content" class="text-[13.5px] mt-[2.5px] truncate max-w-[220px]"
+        <p v-else-if="props.conversation?.last_message?.content" class="mt-[2.5px] truncate max-w-[220px]"
           :class="[props?.conversation.unread_count ? 'text-text-primary' : 'text-text-secondary']">
 
           {{ previewText }}

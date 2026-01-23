@@ -31,9 +31,11 @@
             <button v-if="showScrollToBottom" @click="scrollToBottom(true)"
                 class="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 w-10 h-10 rounded-full bg-white dark:bg-background-secondary text-primary shadow-lg flex items-center justify-center transition-opacity duration-200"
                 aria-label="Voltar para o final da conversa">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <svg viewBox="6 6 24 24" fill="currentColor" width="20" height="20" class="x14rh7hd x1lliihq x1tzjh5l"
+                    overflow="visible">
+                    <path
+                        d="M24.616 18.366a1.25 1.25 0 0 1 1.768 1.768l-7.5 7.5a1.25 1.25 0 0 1-1.768 0l-7.5-7.5a1.25 1.25 0 0 1 1.768-1.768l4.94 4.94a.25.25 0 0 0 .426-.177V9.25a1.25 1.25 0 1 1 2.5 0v13.879c0 .222.27.334.427.176l4.94-4.939z">
+                    </path>
                 </svg>
             </button>
         </div>
@@ -321,16 +323,16 @@ const handleScroll = () => {
 }
 
 const checkScrollPosition = () => {
-  const container = messagesContainer.value
-  if (!container) return
+    const container = messagesContainer.value
+    if (!container) return
 
-  const scrollTop = container.scrollTop
-  const scrollHeight = container.scrollHeight
-  const clientHeight = container.clientHeight
+    const scrollTop = container.scrollTop
+    const scrollHeight = container.scrollHeight
+    const clientHeight = container.clientHeight
 
-  // Mostra botão se estiver pelo menos 200px acima do bottom
-  const nearBottom = scrollHeight - scrollTop - clientHeight < 200
-  showScrollToBottom.value = !nearBottom
+    // Mostra botão se estiver pelo menos 200px acima do bottom
+    const nearBottom = scrollHeight - scrollTop - clientHeight < 200
+    showScrollToBottom.value = !nearBottom
 }
 
 const handleTypingStop = () => {

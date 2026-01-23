@@ -9,7 +9,7 @@ const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'lan'
 const instance = axios.create({
     baseURL: node_env == 'dev' ? 
             'http://localhost:5050/v1' : node_env == 'prod' ? 
-            'https://api.1kole.com/v1/' : 
+            'https://mekieappapi-production.up.railway.app/' : 
             'http://192.168.0.227:5050/v1',
     headers: {
         'Content-Type': 'application/json'

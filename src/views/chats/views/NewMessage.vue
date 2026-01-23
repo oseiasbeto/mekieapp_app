@@ -1,7 +1,8 @@
 <template>
     <div class="relative">
-        <div class="sticky w-full bg-background-primary z-10 top-0">
+        <div class="sticky w-full flex flex-col bg-background-primary z-10 top-0">
             <Navbar @go-back="router.back" title="Nova mensagem" :is-fixed="false" />
+            <div v-show="!loadingLoadUsers" class="mb-3"></div>
             <SearchUsersForm v-if="!loadingLoadUsers" ref="searchUserFormComponent" @search="handleSearch" />
         </div>
         <VirtualUsersList :ukey="ukey" ref="virtualUsersListComponent"
@@ -10,7 +11,7 @@
             :has-more="isSearching ? searchUsers?.pagination?.hasMore : suggestedUsers?.pagination?.hasMore"
             @load-more="loadMoreUsers" @select="select">
             <template v-if="!loadingLoadUsers" #before-content>
-                <div v-if="!isSearching" class="px-4 mt-4 text-xs">
+                <div v-if="!isSearching" class="px-4 mt-4 text-sm">
                     <p class="text-text-secondary">Sugestões:</p>
                 </div>
             </template>

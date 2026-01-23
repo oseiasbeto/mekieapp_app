@@ -2,7 +2,7 @@
     <div class="shrink-0 sticky flex flex-col top-0 w-full z-[10] px-5 bg-background-primary">
         <div class="flex my-auto h-[52px] items-center justify-between">
             <div>
-                <h2 class="text-primary dark:text-white text-[26px] font-secondary font-bold">
+                <h2 class="text-primary dark:text-white text-3xl font-secondary font-bold">
                     mekieapp
                 </h2>
             </div>
@@ -20,8 +20,8 @@
             source="active" @load-more="loadMoreConversations" @on-scroll="handleScroll"
             @more-options="handleMoreOptions">
             <template #before-content>
-                <div class="px-4 py-2">
-                    <SearchWrapper @on-press="router.push('/chats/archived')" placeholder="Pesquisar" />
+                <div class="px-4 mb-2 py-2">
+                    <SearchWrapper @on-press="router.push('/chats/archived')" placeholder="Pesquisar no MekieApp" />
                 </div>
             </template>
         </VirtualChatList>

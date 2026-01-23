@@ -17,7 +17,7 @@
     <div class="ml-3 flex-1 min-w-0">
       <!-- Nome -->
       <div class="w-full flex">
-        <h2 class="text-[15px] mb-0.5 font-semibold text-text-primary truncate leading-tight">
+        <h2 class="text-base mb-0.5 font-semibold text-text-primary truncate leading-tight">
           {{ loading ? 'Carregando...' : conversation?.name || 'Chat' }}
         </h2>
 
@@ -34,7 +34,7 @@
 
 
       <!-- Status (online / digitando / visto por último) -->
-      <p class="text-xs mt-0.5 text-text-secondary flex items-center gap-1.5 leading-none">
+      <p class="text-sm mt-0.5 text-text-secondary flex items-center gap-1.5 leading-none">
         <!-- Carregando -->
         <span v-if="loading">conectando...</span>
 

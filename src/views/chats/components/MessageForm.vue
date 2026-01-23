@@ -13,10 +13,10 @@
         <textarea ref="textareaRef" v-model="inputMessage" @input="autoResize"
           @keydown.enter.exact.prevent="handleEnter" @keydown.enter.shift.exact="allowNewLine" @focus="handleFocus"
           rows="1" placeholder="Mensagem" class="w-full caret-primary resize-none overflow-hidden scroll-pt-4
-                 px-4 py-2 bg-background-secondary 
-                text-base leading-snug
+                 px-4 py-2.5 bg-background-secondary 
+                text-lg leading-snug
                  placeholder-text-secondary rounded-[23px] dark:placeholder-dark-text-secondary/70
-                focus:outline-none
+                focus:outline-none font-primary
                  whitespace-pre-wrap break-words
                  min-h-[30px]" style="line-height: 20px;" />
       </div>

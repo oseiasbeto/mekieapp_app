@@ -48,7 +48,7 @@
         <!-- Conteúdo principal da mensagem -->
         <p :class="[
           'break-words leading-snug',
-          isEmojiOnly ? 'text-5xl' : 'text-[15px]'
+          isEmojiOnly ? 'text-5xl' : 'text-base'
         ]">
           {{ message.content }}
         </p>

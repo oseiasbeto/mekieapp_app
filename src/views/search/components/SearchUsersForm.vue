@@ -1,13 +1,13 @@
 <template>
     <div class="w-full z-50 bg-transparent h-10 pb-2">
-        <div class="flex items-center h-full px-5 gap-3">
-            <div @click="focusInput" class="text-text-secondary">
-                <span>Para:</span>
+        <div class="flex items-center h-full px-4 gap-3">
+            <div @click="focusInput" class=" text-base text-text-secondary">
+                <span class="mb-10">Para:</span>
             </div>
             <!-- Campo de busca -->
-            <div class="flex-1 relative">
+            <div class="flex-1 ml-0.5 relative">
                 <input ref="searchInput" v-model="query" type="text" @input="handleSearch" :placeholder="placeholder"
-                    class="w-full caret-primary pl-0 bg-transparent text-sm text-text-primary placeholder-text-secondary focus:outline-none"
+                    class="w-full caret-primary pl-0 bg-transparent text-[17px] text-text-primary placeholder-text-secondary focus:outline-none"
                     autocomplete="off" />
             </div>
         </div>

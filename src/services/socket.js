@@ -5,7 +5,7 @@ const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'lan';
 
 const SOCKET_URL = node_env === 'dev' ?
     'http://localhost:5050' : node_env == 'prod' ?
-    'https://api.1kole.com' :
+    'https://mekieappapi-production.up.railway.app/' :
     'http://192.168.0.227:5050'
 
 let socket;
