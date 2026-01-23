@@ -90,7 +90,7 @@ const currentTime = ref(Date.now())
 
 const readBy = computed(() => {
   if (!props?.conversation?._id) return []
-  else return props?.conversation?.read_by.filter(i => i.user?._id !== props.userId) || []
+  else return props?.conversation?.read_by?.filter(i => i.user?._id !== props.userId) || []
 })
 
 const previewText = computed(() => {

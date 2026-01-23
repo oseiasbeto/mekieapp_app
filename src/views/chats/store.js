@@ -225,6 +225,10 @@ export default {
                         unread_count: userId !== senderId ? 1 : 0
                     });
                 }
+
+                if (state.conversation?._id === conversation?._id) {
+                    state.conversation.last_message = conversation.last_message
+                }
             }
         },
 
@@ -241,10 +245,10 @@ export default {
 
                 // Se existir, atualiza; se não, adiciona
                 if (index !== -1) {
-                    const userAsReadedIndex = items[index].read_by.findIndex(i => i?.user?._id.toString() === user?._id.toString())
+                    const userAsReadedIndex = items[index]?.read_by?.findIndex(i => i?.user?._id.toString() === user?._id.toString())
 
                     if (userAsReadedIndex === -1) {
-                        state.conversations[convIndex].items[index].read_by.push({
+                        state.conversations[convIndex]?.items[index]?.read_by.push({
                             user,
                             read_at
                         })

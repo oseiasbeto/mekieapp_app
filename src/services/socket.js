@@ -1,7 +1,7 @@
 import { logger } from '@/utils/logger';
 import { io } from 'socket.io-client';
 
-const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'lan';
+const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 
 const SOCKET_URL = node_env === 'dev' ?
     'http://localhost:5050' : node_env == 'prod' ?

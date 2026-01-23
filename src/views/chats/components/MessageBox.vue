@@ -59,7 +59,8 @@
           :class="isSent ? 'right-3' : 'left-3'">
           <div
             :class="['rounded-full border-[0.1px] border-background-primary bg-background-secondary flex items-center justify-center text-sm relative', message.reactions.length > 1 ? 'w-auto px-1 min-w-[24px]' : 'w-6 h-6']"
-            :style="{ zIndex: groupedReactions.length - index }">
+            >
+            
             <span v-for="(reaction, index) in groupedReactions" :key="index">{{ reaction.emoji }}</span>
 
             <div v-if="message.reactions.length > 1"

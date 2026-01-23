@@ -1,7 +1,7 @@
 <template>
     <!-- WhatsApp Android Header - Verde clássico -->
     <header
-        :class="['px-4 flex h-[52px] items-center justify-between bg-background-primary', isFixed ? 'fixed top-0 left-0 right-0 z-50' : 'relative']">
+        :class="['px-4 pl-2 flex h-[52px] items-center justify-between bg-background-primary', isFixed ? 'fixed top-0 left-0 right-0 z-50' : 'relative']">
         <div class="flex items-center">
             <!-- Botão Voltar -->
             <button @click="$emit('goBack')"

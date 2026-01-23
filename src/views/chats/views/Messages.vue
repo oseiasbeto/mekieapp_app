@@ -406,10 +406,28 @@ const handleSendMessage = async (message) => {
 
     store.commit("ADD_MESSAGE_REALTIME", {
         convId: conversation.value?._id,
-        source: conversation?.value?.source,
+        source: conversation?.value?.source || 'active',
         message: newMessage
     })
 
+    if (!conversation.value.last_message?.content?.length) {
+        
+        const messageType = 'text'
+
+        store.commit("ADD_OR_UPDATE_CONVERSATION", {
+            conversation: {
+                ...conversation.value,
+                last_message: {
+                   created_at: Date.now(),
+                   content: newMessage?.content || '',
+                   message_type: messageType || 'text'
+                }
+            }, // pode estar incompleto  
+            userId: user.value?._id, // meu ID
+            senderId: newMessage.sender?._id, // quem enviou a mensagem 
+            source: conversation.value?.source || 'active'
+        });
+    }
     store.commit('UPDATE_UNREAD_COUNT_ON_CONVERSATION', {
         convId: conversation?.value?._id,
         source: conversation?.value?.source,

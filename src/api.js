@@ -4,7 +4,7 @@ import store from "@/store"
 import Cookies from "js-cookie"
 import { logger } from './utils/logger'
 
-const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'lan'
+const node_env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev'
 
 const instance = axios.create({
     baseURL: node_env == 'dev' ? 
